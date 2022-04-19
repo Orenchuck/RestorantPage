@@ -129,16 +129,16 @@ London SE1 9RY</p>
                             <h5>Our restaurants</h5>
                         </div>
                         <div class="menu-our-restaurants-container"><ul id="menu-our-restaurants" class="menu">
-                            <li id="menu-item-2383" 
+                            <li 
                             class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2383">
                             <a target="_blank" rel="noopener" 
                                 href="https://www.rokarestaurant.com/">ROKA restaurants</a>
                             </li>
-<li id="menu-item-2384" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2384">
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2384">
     <a target="_blank" rel="noopener" href="https://zumarestaurant.com/">ZUMA restaurants</a></li>
-<li id="menu-item-2385" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2385">
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2385">
     <a target="_blank" rel="noopener" href="https://www.etarurestaurant.us/">ETARU restaurants</a></li>
-<li id="menu-item-2386" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2386">
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2386">
     <a target="_blank" rel="noopener" href="https://www.inkonitorestaurant.com/">INKO NITO restaurants</a></li>
 </ul></div>                    </div>
 
