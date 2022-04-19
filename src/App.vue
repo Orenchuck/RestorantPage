@@ -1,4 +1,5 @@
 <template>
+  <div class="oblix_wrap">
   <HeaderOblix :book="book" :bookingTable="bookingTable" />
   <ToggleRestoraunt 
     :cuisines="cuisines" 
@@ -11,6 +12,7 @@
   <BigMenu :currentMenu="currentMenu" />
   <BookTable :book="book" :bookingTable="bookingTable" />
   <FooterOblix />
+  </div>
 </template>
 
 <script>
@@ -195,5 +197,15 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
+  .oblix_wrap {
+    background-color: #1f1917;
+    color: #fff;
+    font-family: RockwellStd-Light,serif;
+    font-size: 1em;
+    line-height: 1.5;
+    overflow-y: scroll;
+    min-height: 100%;
+    -webkit-text-size-adjust: 100%;
+  }
 </style>
