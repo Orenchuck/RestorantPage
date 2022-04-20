@@ -35,6 +35,7 @@ export default {
             cursor: pointer;
             font-family: Muli-ExtraBold;
             margin-bottom: 10px;
+            margin-top: 0;
             margin-left: 4px;
             margin-right: 4px;
             opacity: .2;

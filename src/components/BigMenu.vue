@@ -1,5 +1,7 @@
 <template>
 <div class="menu_wrapper">
+  <div class="menu_item">
+    <h4></h4>
   <div
     v-for="(name, idx) in currentMenu"
     :key="idx"
@@ -10,6 +12,13 @@
           <span v-if="name[3] == 'true'">(n)</span>
       </p>
       <p class="dish_price">{{name[1]}}</p>
+  </div>
+  <h4></h4>
+  <div class="menu_info">
+    <p>please inform your waiter of any allergies
+     or dietary requirements a discretionary 13.5% 
+     service charge will be added to your bill</p>
+     </div>
   </div>
 </div>
 </template>
@@ -40,6 +49,19 @@ export default {
     -webkit-box-direction: normal;
   }
 
+  .menu_item {
+    // padding-top: 71px;
+    width: 47%;
+
+    h4 {
+      color: #140906;
+      border-bottom: 2px solid rgba(20,9,6,.5);
+      font-family: Muli-ExtraBold;
+      margin-bottom: 20px;
+      padding-bottom: 20px;
+    }
+  }
+
   .dish_item {
     display: flex;
     margin-bottom: 0;
@@ -65,5 +87,13 @@ export default {
     font-family: Muli-Bold;
     margin-left: auto;
     margin-bottom: 0;
+  }
+
+  .menu_info {
+    font-size: 15px;
+    font-weight: 300;
+    margin-bottom: 0;
+    color: #140906;
+    font-family: RockwellStd;
   }
 </style>

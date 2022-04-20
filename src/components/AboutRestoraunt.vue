@@ -24,11 +24,11 @@ export default ({
 <style lang="scss">
     .main_description {
         padding-bottom: 91px;
-        padding-top: 70px;
+        padding-top: 140px;
         margin-left: 70px;
         margin-right: 70px;
         justify-content: space-between;
-        margin-bottom: 70px;
+        // margin-bottom: 70px;
         align-items: center;
         display: flex;
         -webkit-box-pack: justify;

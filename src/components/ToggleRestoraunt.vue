@@ -12,12 +12,13 @@
         </div> 
     <div class="head_selector">
         <div class="restorant_container">
-            <div class="restorant_item">
-                <h2
-                v-for="(i, index) in cuisines"
+            <div class="restorant_item"
+            v-for="(i, index) in cuisines"
                 :key="index"
                 @click="sendRestorant(index)"
-                class="head__selector-title u-heading--h1">
+                :class="{'restorant_select': i.class}"
+            >
+                <h2>
                 {{ i.name }}
                 </h2>
             </div>
@@ -25,24 +26,6 @@
     </div>
     </div> 
     </div>
-    <!-- <div class="head_title">
-        <h1 class="title__h">
-        Choose menu
-        </h1>
-    </div> 
-    <div class="head_selector">
-        <div class="restorant_container">
-            <div class="restorant_item">
-                <h2
-                v-for="(i, index) in cuisines"
-                :key="index"
-                @click="sendRestorant(index)"
-                class="head__selector-title u-heading--h1">
-                {{ i.name }}
-                </h2>
-            </div>
-        </div>
-    </div> -->
     </div> 
 </template>
 
@@ -136,25 +119,35 @@ export default ({
             -webkit-box-align: center;
             margin-left: 59px;
 
-            &:after {
-                bottom: 0;
-                content: "";
-                height: 4px;
-                left: 4px;
-                position: absolute;
-                right: 4px;
-            }
-            
             &:first-of-type {
                 margin-left: 0;
             }
-        }
+            
 
-        h2 {
-            font-family: RockwellStd;
-            letter-spacing: .03em;
-            font-size: 3.125rem;
-            line-height: 1.1em;
+            h2 {
+                font-family: RockwellStd-Light;
+                letter-spacing: .01em;
+                font-size: 3.125rem;
+                line-height: 1.1em;
+            }
+            
+
+        }
+    }
+
+    .restorant_select {
+        font-size: 3.125rem;
+        line-height: 1.1em;
+        font-weight: 400;
+
+        &::after {
+            bottom: 0;
+            content: "";
+            height: 4px;
+            left: 4px;
+            position: absolute;
+            right: 4px;
+            background-color: #fff;
         }
     }
 </style>

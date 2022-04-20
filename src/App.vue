@@ -8,7 +8,7 @@
   />
   <AboutRestoraunt :currentCuisine="currentCuisine" />
   <ToggleMenu :currentCuisine="currentCuisine" :setMenu="setMenu" />
-  <FiltersDishes :useVegeterian="useVegeterian" :useNuts="useNuts" />
+  <FiltersDishes :useVegeterian="useVegeterian" :useNuts="useNuts" :currentMenuName="currentMenuName" />
   <BigMenu :currentMenu="currentMenu" />
   <BookTable :book="book" :bookingTable="bookingTable" />
   <FooterOblix />
@@ -48,6 +48,7 @@ export default {
             toShow: true,
             description: "Enjoy views of West London alongside sophisticated and classic dishes from our rotisserie and grill; all cooked in our open kitchen.",
             href: '/west',
+            class: true,
         }, 
         {
             name: 'East',
@@ -55,6 +56,7 @@ export default {
             toShow: false,
             description: 'Enjoy views of East London, culinary cocktails and innovative seasonal dishes in a creative and relaxing dining and bar space.',
             href: "/east",
+            class: false,
         }, 
         {
             name: 'Bar',
@@ -62,6 +64,7 @@ export default {
             toShow: false,
             description: "Enjoy views of BAR. Coctails and kitchen.",
             href: "/bar",
+            class: false,
 
         }
         ],
@@ -72,19 +75,25 @@ export default {
         description: "Enjoy views of West London alongside sophisticated and classic dishes from our rotisserie and grill; all cooked in our open kitchen.",
         href: "/west",
         menus: [],
+        class: true,
     },
     allmenus: [],  
     currentMenu: {},
     book: false,
     vegeterian: false,
     nuts: false,
+    currentMenuName: '',
     }
   },
 
   methods: {
     sendRestorant(index) {
-      this.cuisines.map(i => i['toShow'] = false)
+      this.cuisines.map(i => {
+        i['toShow'] = false;
+        i.class = false;
+      })
       this.cuisines[index].toShow = true;
+      this.cuisines[index].class = true;
       this.currentCuisine = this.cuisines[index];
       for (let menu in this.allmenus) {
         if (menu == this.currentCuisine.name) {
@@ -104,6 +113,7 @@ export default {
 
     setMenu(index) {
       const name = this.currentCuisine.menu[index];
+      this.currentMenuName = name;
       const nameRestorant = this.currentCuisine.name;
       const menusRestorant = this.allmenus[`${nameRestorant}1`];
       for (let i=0; i <= menusRestorant.length; i++) {
@@ -182,9 +192,10 @@ export default {
             }
             const menu = this.allmenus['West1'];
             let plate = menu[0];
+            this.currentMenuName = this.currentCuisine.menu[0];
         for (let key in plate) {
           if (key == this.currentCuisine.menu[0]) {
-            this.currentMenu = plate[key]
+            this.currentMenu = plate[key];
           }
         }
         }
