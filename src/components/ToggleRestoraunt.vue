@@ -1,12 +1,31 @@
 <template>
 <div class="menus_restaurant_head">
+    <div class="menus_restaurant_wrap">
     <div 
         :style="currentCuisine['picture']" 
-        style="height: 200px"
         class="bg_image"
         >
+        <div class="head_title">
+            <h1 class="title__h">
+            Choose menu
+            </h1>
+        </div> 
+    <div class="head_selector">
+        <div class="restorant_container">
+            <div class="restorant_item">
+                <h2
+                v-for="(i, index) in cuisines"
+                :key="index"
+                @click="sendRestorant(index)"
+                class="head__selector-title u-heading--h1">
+                {{ i.name }}
+                </h2>
+            </div>
+        </div>
+    </div>
     </div> 
-    <div class="head_title">
+    </div>
+    <!-- <div class="head_title">
         <h1 class="title__h">
         Choose menu
         </h1>
@@ -23,7 +42,7 @@
                 </h2>
             </div>
         </div>
-    </div>
+    </div> -->
     </div> 
 </template>
 
@@ -41,15 +60,10 @@ export default ({
 
 <style lang="scss">
     .menus_restaurant_head {
-        display: flex;
-        -webkit-box-orient: vertical;
-        -webkit-box-direction: normal;
-        flex-direction: column;
         height: 500px;
-        justify-content: flex-end;
         position: relative;
+        top: 90px;
         z-index: 1;
-        -webkit-box-pack: end;
 
         &:after{
             background-color: #140906;
@@ -63,10 +77,27 @@ export default ({
         }
     }
 
+    .menus_restaurant_wrap {
+        bottom: 0;
+        left: 0;
+        position: absolute;
+        right: 0;
+        top: 0;
+        height: 100%;
+    }
+
     .bg_image {
         background-position: 50%;
         background-size: cover;
         opacity: 1;
+        height: 100%;
+                        display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        flex-direction: column;
+        height: 500px;
+        width: 100%;
+        justify-content: flex-end;
     }
 
     .head_title{

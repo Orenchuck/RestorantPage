@@ -1,5 +1,6 @@
 <template>
   <div class="site_header">
+    <div class="header_container">
     <div class="oblix_logo">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 107.941 48.489">
       <g data-name="Group 1409">
@@ -34,6 +35,7 @@
         <li><a href="#">Bar</a></li>
         <li><a href="#">Menus</a></li>
         <li><a href="#">Oblix Experience</a></li>
+        <li><a href="#">Gift Vouchers</a></li>
       </ul>
     <button 
       @click="bookingTable"
@@ -42,7 +44,9 @@
         {{book ? "Mission complete" : "Book a table"}}
       </button>
     </div>
+    </div>
   </div>
+      <div class="header_margin"></div>
 </template>
 
 <script>
@@ -89,11 +93,22 @@ export default {
       }
   }
 
+  .header_container {
+    height: 90px;
+    padding-top: 20px;
+    align-items: flex-start;
+    display: flex;
+    margin-left: 70px;
+    margin-right: 70px;
+    max-width: none;
+  }
+
   .oblix_logo {
     display: block;
     position: relative;
     margin-right: 126px;
     z-index: 30;
+    width: 180px;
   }
 
   .logo_text {
@@ -118,6 +133,7 @@ export default {
         letter-spacing: .3px;
         position: relative;
         text-transform: lowercase;
+
           &:before {
             border-bottom: 1px solid #fff;
             bottom: -2px;
@@ -146,8 +162,9 @@ export default {
         display: flex;
         flex: 1;
         justify-content: flex-end;
-        margin: 0;
+        // margin: 0;
         padding-left: 0;
+        // height: 100%;
         -webkit-box-pack: end;
         -webkit-box-flex: 1;
         -webkit-box-align: center;
@@ -172,6 +189,7 @@ export default {
             cursor: pointer;
             text-decoration: inherit;
             background-color: transparent;
+
               &:hover {
                 color: #fff;
               }
@@ -201,4 +219,8 @@ export default {
     line-height: 1.15;
     margin: 0;
   }
+
+  // .header_margin {
+  //   height: 90px;
+  // }
 </style>
