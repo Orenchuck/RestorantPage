@@ -68,4 +68,30 @@ export default ({
             line-height: 1.5em;
         }
     }
+
+    @media only screen and (max-width: 864px) {
+        .main_description {
+            -webkit-box-align: start;
+            -ms-flex-align: start;
+            align-items: flex-start;
+            -webkit-box-orient: vertical;
+            -webkit-box-direction: normal;
+            -ms-flex-direction: column;
+            flex-direction: column;
+            // margin-bottom: 40px;
+            margin-right: 20px;
+            margin-left: 20px;
+            padding-bottom: 20px;
+            padding-top: 100px;
+        }
+
+        .description_content {
+            margin-right: 0;
+
+            p {
+                font-size: 18px;
+            }
+        }
+    }
+
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <div class="site_header">
+  <header class="site_header">
     <div class="header_container">
     <div class="oblix_logo">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 107.941 48.489">
@@ -29,7 +29,9 @@
            </div>
     </div>
     <div class="header_wrapper">
-      <ul>
+      <ul 
+        :class="mobMenu"
+      >
         <li><a href="#">East</a></li>
         <li><a href="#">West</a></li>
         <li><a href="#">Bar</a></li>
@@ -37,15 +39,24 @@
         <li><a href="#">Oblix Experience</a></li>
         <li><a href="#">Gift Vouchers</a></li>
       </ul>
+      <div class="right_mob">
     <button 
       @click="bookingTable"
       class="button_book_table"
     >
         {{book ? "Mission complete" : "Book a table"}}
       </button>
+      <div class="mob_burger"
+        @click="showMenu"
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
     </div>
     </div>
-  </div>
+    </div>
+  </header>
       <div class="header_margin"></div>
 </template>
 
@@ -55,6 +66,8 @@ export default {
     props: {
         book: Boolean,
         bookingTable: Function,
+        mobMenu: String,
+        showMenu: Function,
     }
 }
 </script>
@@ -220,7 +233,140 @@ export default {
     margin: 0;
   }
 
+
   // .header_margin {
   //   height: 90px;
   // }
+
+  @media only screen and (max-width: 1056px) {
+      .mob_burger {
+        cursor: pointer;
+        height: 25px;
+        width: 29px;
+        z-index: 29;
+
+    span {
+      background-color: #fff;
+      border-radius: 1px;
+      display: block;
+      height: 3px;
+      width: 100%;
+      margin-bottom: 5px;
+
+      &:first-child {
+        margin-top: 0;
+      }
+    }
+  }
+
+    .site_header {
+    left: 0;
+    position: absolute;
+    top: 24px;
+}
+
+  .header_wrapper {
+    left: 0;
+    position: absolute;
+
+    ul {
+      align-items: flex-start;
+      background: #1f1917;
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+      flex-direction: column;
+      height: 100vh;
+      -webkit-box-pack: start;
+      justify-content: flex-start;
+      margin: 0 -70px;
+      overflow-y: auto;
+      padding: 126px 100px 0;
+      top: 100px;
+      width: 100%;
+      z-index: 28;
+      -webkit-box-align: start;
+
+      li {
+        text-transform: unset;
+
+        a {
+          font-size: 24px;
+          margin-bottom: 20px;
+          text-transform: unset;
+          width: fit-content;
+        }
+      }
+    }
+  }
+
+  .right_mob {
+    display: flex;
+    position: absolute;
+    right: 0;
+    top: 0;
+    align-items: center;
+    -webkit-box-align: center;
+  }
+
+  .button_book_table {
+    font-family: Muli;
+    font-size: 14px;
+    margin-right: 28px;
+    min-width: 77px;
+    padding: 10px 7px;
+    z-index: 29;
+  }
+  }
+
+
+  @media only screen and (max-width: 864px) {
+      .site_header {
+      // margin-left: 30px;
+      margin-right: 30px;
+      padding-top: 20px;
+      align-items: flex-start;
+      display: flex;
+      top: 14px;
+
+      svg {
+        height: 40px;
+        width: 90px;
+      }
+
+      .logo_text {
+        font-size: 13px;
+        left: 0;
+        opacity: 0;
+
+        span {
+          font-size: 8px;
+        }
+      }
+  }
+
+    .header_container {
+      display: flex;
+      height: 70px;
+      width: 100%;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      align-items: flex-start;
+      -webkit-box-pack: justify;
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+      padding-top: 20px;
+    }
+
+    .header_wrapper {
+      left: 0;
+      position: absolute;
+      top: 14px;
+
+      .mob_menu {
+          display: none !important;;
+      }
+    }
+  }
+
 </style>

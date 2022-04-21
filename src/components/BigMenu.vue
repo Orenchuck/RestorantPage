@@ -1,5 +1,8 @@
 <template>
-<div class="menu_wrapper">
+<div 
+  :class="show_menu_mob"
+  class="menu_wrapper"
+>
   <div class="menu_item">
     <h4></h4>
   <div
@@ -28,6 +31,7 @@ export default {
     name: 'BigMenu',
     props: {
         currentMenu: Object,
+        show_menu_mob: String,
     }
 
 }
@@ -96,4 +100,21 @@ export default {
     color: #140906;
     font-family: RockwellStd;
   }
+
+   @media only screen and (max-width: 864px) {
+     .menu_wrapper {
+       align-content: normal;
+      padding: 18px 20px 30px;
+
+     }
+
+     .menu_item {
+      // padding-top: 30px;
+      width: auto;
+     }
+
+     .show_menu_mob {
+       display: none;
+     }
+   }
 </style>

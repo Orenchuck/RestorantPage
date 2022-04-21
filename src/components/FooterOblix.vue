@@ -169,7 +169,6 @@ export default {
         padding: 50px 0 20px;
         position: relative;
         width: 100%;
-        color: #ababab!important;
 
         .main_container {
             margin-left: 70px;
@@ -257,6 +256,7 @@ export default {
         -webkit-box-direction: normal;
         -webkit-box-align: end;
         color: #1f1917;
+        fill: #1f1917!important;
 
         svg {
             fill: #1f1917!important;
@@ -415,4 +415,115 @@ export default {
         border-top: 2px solid #ababab;
         color: #ababab;
     }
+
+    @media only screen and (max-width: 1200px) {
+        .c_footer__inner {
+            -webkit-box-orient: vertical;
+            -webkit-box-direction: normal;
+            -ms-flex-direction: column;
+            flex-direction: column;
+        }
+
+        .c_part {
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            justify-content: center;
+
+            &:last-of-type {
+                align-items: center;
+                -webkit-box-orient: vertical;
+                -webkit-box-direction: normal;
+                flex-direction: column;
+                text-align: center;
+                -webkit-box-align: center;
+                margin-bottom: 40px;
+                width: min-content;
+            }
+        }
+
+        .logo_footer {
+            margin-bottom: 30px;
+            margin-right: 0;
+        }
+
+        .c_row {
+            .two, .three, .four {
+            width: min-content;
+            margin-bottom: 40px;
+        }
+        }
+    }
+
+    @media only screen and (max-width: 1056px) {
+        .logo_footer {
+            margin-right: 24px;
+        }
+    }
+
+
+
+    @media only screen and (max-width: 864px) {
+        .c_footer__inner {
+            display: block;
+        }
+
+        .c_part {
+            -webkit-box-flex: 1;
+            flex: 1 1 100%;
+        }
+
+        .copyright {
+            -webkit-box-orient: vertical;
+            -webkit-box-direction: normal;
+            -ms-flex-direction: column;
+            flex-direction: column;
+            text-align: center;
+        }
+
+        .logo_footer {
+            margin-right: 0;
+            width: 124px;
+            margin: 0 auto 40px;
+            min-width: 120px;
+
+            svg {
+                height: 55px!important;
+                width: 120px!important;
+                fill: #1f1917!important;
+            }
+
+            .text {
+                font-size: 13px;
+            }
+        }
+    }
+
+
+    @media only screen and (max-width: 736px) {
+        .c_footer {
+            padding-top: 39px;
+        }
+
+        .logo_footer {
+            svg {
+                margin-right: 0;
+            }
+
+            .text {
+                margin-top: 11px;
+            }
+        }
+
+        .c_row.two {
+            margin-bottom: 15px!important;
+        }
+    }
+
+    @media only screen and (max-width: 512px) {
+        .logo_footer {
+            margin: 0 auto;
+        }
+    }
+
+
 </style>

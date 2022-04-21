@@ -48,4 +48,14 @@ export default {
             }
         }
     }
+
+    @media only screen and (max-width: 864px) {
+        .panel_menu_cuisine {
+            margin-bottom: 10px;
+            padding: 24px 20px;
+            flex-direction: column;
+        }
+    }
+
+    
 </style>

@@ -1,6 +1,11 @@
 <template>
   <div class="oblix_wrap">
-  <HeaderOblix :book="book" :bookingTable="bookingTable" />
+  <HeaderOblix 
+    :book="book" 
+    :bookingTable="bookingTable"
+    :showMenu="showMenu"
+    :mobMenu="mobMenu"
+  />
   <ToggleRestoraunt 
     :cuisines="cuisines" 
     :sendRestorant="sendRestorant" 
@@ -8,8 +13,16 @@
   />
   <AboutRestoraunt :currentCuisine="currentCuisine" />
   <ToggleMenu :currentCuisine="currentCuisine" :setMenu="setMenu" />
-  <FiltersDishes :useVegeterian="useVegeterian" :useNuts="useNuts" :currentMenuName="currentMenuName" />
-  <BigMenu :currentMenu="currentMenu" />
+  <FiltersDishes 
+    :useVegeterian="useVegeterian" 
+    :useNuts="useNuts" 
+    :currentMenuName="currentMenuName" 
+    :show_menu_mob="show_menu_mob"
+    :showFilters="showFilters"
+    :mobFilter="mobFilter"
+    :resetFilters="resetFilters"
+  />
+  <BigMenu :currentMenu="currentMenu" :show_menu_mob="show_menu_mob" />
   <BookTable :book="book" :bookingTable="bookingTable" />
   <FooterOblix />
   </div>
@@ -83,6 +96,10 @@ export default {
     vegeterian: false,
     nuts: false,
     currentMenuName: '',
+    mobMenu: 'mob_menu',
+    show_menu_mob: 'show_menu_mob',
+    type_menu_mob: null,
+    mobFilter: 'mob_filter',
     }
   },
 
@@ -116,6 +133,14 @@ export default {
       this.currentMenuName = name;
       const nameRestorant = this.currentCuisine.name;
       const menusRestorant = this.allmenus[`${nameRestorant}1`];
+
+      if (this.type_menu_mob === index) {
+              this.show_menu_mob ? this.show_menu_mob = null : this.show_menu_mob = 'show_menu_mob';
+      } else {
+        this.type_menu_mob = index;
+        this.show_menu_mob = null;
+      }
+
       for (let i=0; i <= menusRestorant.length; i++) {
         let plate = menusRestorant[i];
         for (let key in plate) {
@@ -178,6 +203,29 @@ export default {
         }
       }
     }
+  },
+
+  resetFilters () {
+const nameRestorant = this.currentCuisine.name;
+      const menusRestorant = this.allmenus[`${nameRestorant}1`];
+      for (let i=0; i <= menusRestorant.length; i++) {
+        let plate = menusRestorant[i];
+        for (let key in plate) {
+          if (key == this.currentCuisine.menu[0]) {
+            this.currentMenu = plate[key]
+          }
+        }
+      }
+      this.mobFilter = 'mob_filter';
+  },
+
+  showMenu () {
+    console.log(this.mobMenu);
+    this.mobMenu ? this.mobMenu = null : this.mobMenu = 'mob_menu';
+  },
+
+  showFilters () {
+    this.mobFilter ? this.mobFilter = null : this.mobFilter = 'mob_filter'
   }
 
   },
@@ -215,8 +263,9 @@ export default {
     font-family: RockwellStd-Light,serif;
     font-size: 1em;
     line-height: 1.5;
-    overflow-y: scroll;
+    // overflow-y: scroll;
     min-height: 100%;
+    width: 100vw;
     -webkit-text-size-adjust: 100%;
   }
 </style>

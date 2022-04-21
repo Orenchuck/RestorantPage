@@ -29,8 +29,8 @@ export default {
     position: relative;
     display: flex;
     align-items: center;
+    justify-content: center;
     -webkit-box-align: center;
-    height: inherit;
     -webkit-box-pack: center;
     margin-left: 70px;
     margin-right: 70px;
@@ -50,5 +50,13 @@ export default {
 
   .button_footer {
     z-index: 999;
+  }
+
+  @media only screen and (max-width: 864px) {
+    .footer_book_table {
+      height: 150px;
+      width: 100%;
+      margin-left: 0;
+    }
   }
 </style>

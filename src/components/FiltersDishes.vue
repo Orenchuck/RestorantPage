@@ -1,5 +1,7 @@
 <template>
-<div class="filter_box">
+<div
+    :class="show_menu_mob"
+    class="filter_box">
     <div class="page_logo">
         <!-- <p> O </p> -->
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 107.941 48.489">
@@ -33,12 +35,26 @@
         </h6>
         <div class="filter_names">
             <h6 
-            @click="useVegeterian"
+                class="mob_select"
+                @click="resetFilters"
+                >None</h6>
+            <i 
+                class="icon-down-open"
+                @click="showFilters"
+            ></i>
+
+            <h6 
+                :class="mobFilter"
+                @click="useVegeterian"
+                class="select_filter"
             >
                 Vegeterian
             </h6>
             <h6 
-            @click="useNuts"
+                :class="mobFilter"
+                @click="useNuts"
+                class="select_filter"
+
             >
                 Contain nuts
             </h6>
@@ -55,6 +71,10 @@ export default {
         useVegeterian: Function,
         useNuts: Function,
         currentMenuName: String,
+        show_menu_mob: String,
+        mobFilter: String,
+        showFilters: Function,
+        resetFilters: Function,
     }
 }
 </script>
@@ -145,11 +165,12 @@ export default {
 
     .filter_names {
         position: relative;
-        width: 80%;
+        // width: 80%;
         flex-wrap: wrap;
         width: 100%;
         z-index: 1;
         display: flex;
+        // height: 35px;
 
         h6 {
             color: #a59e9e;
@@ -167,4 +188,113 @@ export default {
         }
     }
 
+    .icon-down-open, .mob_select {
+        display: none;
+    }
+
+   @media only screen and (max-width: 864px) {
+    //    .filter_box {
+    //        height: 20vh;
+    //    }
+
+     .show_menu_mob {
+       display: none;
+     }
+
+     .page_logo {
+         display: none;
+     }
+
+     .filter_wrap {
+        border: none;
+        margin-top: 0;
+        padding-bottom: 0;
+
+        h3 {
+            display: none;
+        }
+     }
+
+     .filter_title {
+        justify-content: flex-start;
+        width: auto;  
+        -webkit-box-pack: start;
+        -ms-flex-pack: start;
+     }
+
+     .filter_names {
+        width: auto;
+        background-color: #fff;
+        // -webkit-box-shadow: 1px 2px 3px 0 rgb(0 0 0 / 10%);
+        // box-shadow: 1px 2px 3px 0 rgb(0 0 0 / 10%);
+        display: block;
+        left: 0;
+        // // position: absolute;
+        top: 100%;
+        margin-top: 11vh;
+
+        .select_filter {
+        //             width: auto;
+        // background-color: #fff;
+        -webkit-box-shadow: 1px 2px 3px 0 rgb(0 0 0 / 10%);
+        box-shadow: 1px 2px 3px 0 rgb(0 0 0 / 10%);
+        // display: block;
+        // left: 0;
+        // // position: absolute;
+        // top: 100%;
+        }
+
+        h6 {
+            margin: 0;
+            padding: 7px 16px;
+            color: #a59e9e;
+            cursor: pointer;
+            user-select: none;
+            white-space: nowrap;
+        }
+     }
+
+     .icon-down-open {
+        color: #d0cecd;
+        font-size: 14px;
+        margin-left: 6px;
+        display: inline;
+
+        &::before {
+            content: '\f004';
+            // content: '\ea36';
+            font-family: "fontello";
+            font-style: normal;
+            font-weight: normal;
+            // speak: none;
+            display: inline-block;
+            text-decoration: inherit;
+            width: 1em;
+            margin-right: 0.2em;
+            text-align: center;
+            /* opacity: .8; */
+            font-variant: normal;
+            text-transform: none;
+            line-height: 1em;
+            margin-left: 0.2em;
+            /* font-size: 120%; */
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+     }
+
+     .mob_select {
+         display: inline;
+     }
+
+     .mob_filter {
+         display: none;
+     }
+   }
+
+   @media only screen and (max-width: 736px) {
+       .filter_box {
+            padding: 20px 20px 30px;
+       }
+   }
 </style>

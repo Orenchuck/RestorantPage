@@ -13,7 +13,7 @@
     <div class="head_selector">
         <div class="restorant_container">
             <div class="restorant_item"
-            v-for="(i, index) in cuisines"
+                v-for="(i, index) in cuisines"
                 :key="index"
                 @click="sendRestorant(index)"
                 :class="{'restorant_select': i.class}"
@@ -74,12 +74,12 @@ export default ({
         background-size: cover;
         opacity: 1;
         height: 100%;
-                        display: flex;
+        display: flex;
         -webkit-box-orient: vertical;
         -webkit-box-direction: normal;
         flex-direction: column;
-        height: 500px;
-        width: 100%;
+        // height: 500px;
+        // width: 100%;
         justify-content: flex-end;
     }
 
@@ -130,8 +130,6 @@ export default ({
                 font-size: 3.125rem;
                 line-height: 1.1em;
             }
-            
-
         }
     }
 
@@ -150,4 +148,46 @@ export default ({
             background-color: #fff;
         }
     }
+
+    @media only screen and (max-width: 864px) {
+        .menus_restaurant_head {
+            height: 460px;
+        }
+
+       .bg_img {
+            background-position: 24%;
+            // height: 340px;
+
+        }
+
+        .head_title{
+            margin-left: 20px;
+        }
+
+        .title__h {
+            font-size: 16px;
+            font-weight: 700;
+        }
+
+        .restorant_container {
+            height: 82px;
+            margin-left: 20px;
+            // margin-right: 20px;
+
+            .restorant_item {
+                h2 {
+                    font-size: 2.375rem;
+                    line-height: 1.1em;
+                }
+            }
+        }
+    }
+
+
+    @media only screen and (max-width: 736px) {
+        .menus_restaurant_head {
+            height: 340px;
+        }
+    }
+
 </style>
