@@ -6,15 +6,15 @@
   <div class="menu_item">
     <h4></h4>
   <div
-    v-for="(name, idx) in currentMenu"
+    v-for="(dish, idx) in currentMenu"
     :key="idx"
     class="dish_item"
   >
-      <p class="dish_title">{{name[0]}}
-          <span v-if="name[2] == 'true'">(v)</span>
-          <span v-if="name[3] == 'true'">(n)</span>
+      <p class="dish_title">{{dish.name}}
+          <span v-if="dish.vegeterian">(v)</span>
+          <span v-if="dish.containNuts">(n)</span>
       </p>
-      <p class="dish_price">{{name[1]}}</p>
+      <p class="dish_price">{{dish.price}}</p>
   </div>
   <h4></h4>
   <div class="menu_info">

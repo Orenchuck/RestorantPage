@@ -87,11 +87,11 @@ export default {
         toShow: true,
         description: "Enjoy views of West London alongside sophisticated and classic dishes from our rotisserie and grill; all cooked in our open kitchen.",
         href: "/west",
-        menus: [],
+        menu: [],
         class: true,
     },
     allmenus: [],  
-    currentMenu: {},
+    currentMenu: [],
     book: false,
     vegeterian: false,
     nuts: false,
@@ -231,22 +231,47 @@ const nameRestorant = this.currentCuisine.name;
   },
 
   mounted() {
-    axios.get('https://mocki.io/v1/57e39043-277e-4a48-95dd-5dc4e8597fd4')
+    // axios.get('https://mocki.io/v1/57e39043-277e-4a48-95dd-5dc4e8597fd4')
+    axios.get('https://mocki.io/v1/1a7ad2ca-fb29-4fd8-b68a-7259a6ed5cfe')
       .then(response => {
-            for (let restorant in response.data[0]) {
-            this.allmenus = response.data[0]
-            if (restorant == this.currentCuisine.name) {
-                this.currentCuisine['menu'] = this.allmenus[restorant];
-            }
-            const menu = this.allmenus['West1'];
-            let plate = menu[0];
-            this.currentMenuName = this.currentCuisine.menu[0];
-        for (let key in plate) {
-          if (key == this.currentCuisine.menu[0]) {
-            this.currentMenu = plate[key];
+        response.data[0].West.map(i => {
+          for (let key in i) {
+            this.currentCuisine.menu.push(key)
           }
-        }
-        }
+          this.currentMenuName = this.currentCuisine.menu[0];
+          // const firstMenu = response.data[0].West[0];
+          // console.log('1', Object.values(response.data[0].West[0]));
+          const dishMenu = [];
+          // firstMenu[this.currentMenuName].map(i => {
+          //    a.push(Object.values(i));
+          // });
+          Object.values(response.data[0].West[0]).map(i => {
+            i.map(j => {
+              dishMenu.push(Object.values(j)[0])
+            })
+            
+          })
+          
+          this.currentMenu = dishMenu;
+        });
+        console.log(this.currentMenu);
+        // for (let key in firstMenu) {
+        //   console.log(key);
+        // }
+        //     for (let restorant in response.data[0]) {
+        //     this.allmenus = response.data[0]
+        //     if (restorant == this.currentCuisine.name) {
+        //         this.currentCuisine['menu'] = this.allmenus[restorant];
+        //     }
+        //     const menu = this.allmenus['West1'];
+        //     let plate = menu[0];
+        //     this.currentMenuName = this.currentCuisine.menu[0];
+        // for (let key in plate) {
+        //   if (key == this.currentCuisine.menu[0]) {
+        //     this.currentMenu = plate[key];
+        //   }
+        // }
+        // }
       })
       .catch(error => {
         console.log(error);
