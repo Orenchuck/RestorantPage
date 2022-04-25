@@ -168,16 +168,11 @@ export default {
   },
 
   resetFilters () {
-const nameRestorant = this.currentCuisine.name;
-      const menusRestorant = this.allmenus[`${nameRestorant}1`];
-      for (let i=0; i <= menusRestorant.length; i++) {
-        let plate = menusRestorant[i];
-        for (let key in plate) {
-          if (key == this.currentCuisine.menu[0]) {
-            this.currentMenu = plate[key]
-          }
-        }
-      }
+    let index;
+      Object.keys(this.allmenus).map((i, idx) => {
+        i === this.currentCuisine.name ? index = idx : null
+      })
+    this.selectMenu(this.currentCuisine.name, index);
       this.mobFilter = 'mob_filter';
   },
 
@@ -193,7 +188,6 @@ const nameRestorant = this.currentCuisine.name;
   },
 
   mounted() {
-    // axios.get('https://mocki.io/v1/1a7ad2ca-fb29-4fd8-b68a-7259a6ed5cfe')
     axios.get('https://mocki.io/v1/3d33c0dd-d8a9-43f1-9f11-07a82e23768b')
       .then(response => {
         this.allmenus = response.data[0];
@@ -201,13 +195,6 @@ const nameRestorant = this.currentCuisine.name;
         this.currentCuisine['menu'] = Object.values(this.allmenus[firstRestourant]);
         this.currentMenuName = Object.keys(this.currentCuisine.menu[0])[0];
         this.selectMenu(firstRestourant, 0);
-        // const dishMenu = [];
-        //   Object.values(response.data[0].West[0]).map(i => {
-        //     i.map(j => {
-        //       dishMenu.push(Object.values(j)[0])
-        //     })
-        //   })
-        //   this.currentMenu = dishMenu;
       })
       .catch(error => {
         console.log(error);
@@ -224,7 +211,6 @@ const nameRestorant = this.currentCuisine.name;
     font-family: RockwellStd-Light,serif;
     font-size: 1em;
     line-height: 1.5;
-    // overflow-y: scroll;
     min-height: 100%;
     width: 100vw;
     -webkit-text-size-adjust: 100%;
