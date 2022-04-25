@@ -5,7 +5,7 @@
         :key="idx"
         @click="setMenu(idx)"
         class="cuisine__one cuisine__one_active">
-           {{ currentCuisine.menu[idx]}}
+           {{ Object.keys(currentCuisine.menu[idx])[0] }}
         </p>
     </div> 
 </template>

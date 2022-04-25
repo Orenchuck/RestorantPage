@@ -22,20 +22,22 @@
             ></i>
 
             <h6 
+                v-for="(filter, index) in Object.keys(filters)"
+                :key="index"
                 :class="mobFilter"
-                @click="useVegeterian"
+                @click="useFilter(filter)"
                 class="select_filter"
             >
-                Vegeterian
+                {{ filter }}
             </h6>
-            <h6 
+            <!-- <h6 
                 :class="mobFilter"
                 @click="useNuts"
                 class="select_filter"
 
             >
                 Contain nuts
-            </h6>
+            </h6> -->
         </div>
       </div>
   </div>
@@ -51,13 +53,13 @@ export default {
         LogoOblix,
     },
     props: {
-        useVegeterian: Function,
-        useNuts: Function,
+        useFilter: Function,
         currentMenuName: String,
         show_menu_mob: String,
         mobFilter: String,
         showFilters: Function,
         resetFilters: Function,
+        filters: Object,
     }
 }
 </script>

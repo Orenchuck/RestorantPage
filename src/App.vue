@@ -14,8 +14,8 @@
   <AboutRestoraunt :currentCuisine="currentCuisine" />
   <ToggleMenu :currentCuisine="currentCuisine" :setMenu="setMenu" />
   <FiltersDishes 
-    :useVegeterian="useVegeterian" 
-    :useNuts="useNuts" 
+    :useFilter="useFilter" 
+    :filters="filters"
     :currentMenuName="currentMenuName" 
     :show_menu_mob="show_menu_mob"
     :showFilters="showFilters"
@@ -93,8 +93,10 @@ export default {
     allmenus: [],  
     currentMenu: [],
     book: false,
-    vegeterian: false,
-    nuts: false,
+    filters: {
+      vegeterian: false,
+      containNuts: false,
+    },
     currentMenuName: '',
     mobMenu: 'mob_menu',
     show_menu_mob: 'show_menu_mob',
@@ -104,6 +106,16 @@ export default {
   },
 
   methods: {
+    selectMenu(restourant, restourantCuisineIndex) {
+      const dishMenu = [];
+      Object.values(this.allmenus[restourant][restourantCuisineIndex]).map(i => {
+        i.map(j => {
+          dishMenu.push(Object.values(j)[0])
+        })
+      })
+      this.currentMenu = dishMenu;
+    }, 
+
     sendRestorant(index) {
       this.cuisines.map(i => {
         i['toShow'] = false;
@@ -114,25 +126,17 @@ export default {
       this.currentCuisine = this.cuisines[index];
       for (let menu in this.allmenus) {
         if (menu == this.currentCuisine.name) {
-          this.currentCuisine['menu'] = this.allmenus[menu];
-        }
-        if (menu == `${this.currentCuisine.name}1`) {
-          let menuRestorant = this.allmenus[menu];
-          let plate = menuRestorant[0];
-        for (let key in plate) {
-          if (key == this.currentCuisine.menu[0]) {
-            this.currentMenu = plate[key]
-          }
-        }
+          this.currentCuisine['menu'] = Object.values(this.allmenus[menu]);
+          this.currentMenuName = Object.keys(this.currentCuisine.menu[0])[0];
+          
+          this.selectMenu(menu, 0);
         }
       }
     },
 
     setMenu(index) {
-      const name = this.currentCuisine.menu[index];
-      this.currentMenuName = name;
-      const nameRestorant = this.currentCuisine.name;
-      const menusRestorant = this.allmenus[`${nameRestorant}1`];
+      this.currentMenuName = Object.keys(this.currentCuisine.menu[index])[0];
+      this.selectMenu(this.currentCuisine.name, index);
 
       if (this.type_menu_mob === index) {
               this.show_menu_mob ? this.show_menu_mob = null : this.show_menu_mob = 'show_menu_mob';
@@ -140,68 +144,26 @@ export default {
         this.type_menu_mob = index;
         this.show_menu_mob = null;
       }
-
-      for (let i=0; i <= menusRestorant.length; i++) {
-        let plate = menusRestorant[i];
-        for (let key in plate) {
-          if (key == name) {
-            this.currentMenu = plate[key]
-          }
-        }
-      }
     },
 
     bookingTable() {
       this.book = ref(!this.book);
     },
 
-  useVegeterian(){
-    this.vegeterian = !this.vegeterian;
+  useFilter(name){
+    this.filters[name] = !this.filters[name];
     let filter = ref([]);
-    if (this.vegeterian === true) {
-      for (let key in this.currentMenu) {
-        let dish = this.currentMenu[key];
-        if (dish[2] == 'true') {
-          filter.value.push(dish)
-        }
-      }
+    if (this.filters[name]) {
+      this.currentMenu.map(i => {
+        i[name] ? filter.value.push(i) : null
+      })
       this.currentMenu = filter;
     } else {
-            const nameRestorant = this.currentCuisine.name;
-      const menusRestorant = this.allmenus[`${nameRestorant}1`];
-      for (let i=0; i <= menusRestorant.length; i++) {
-        let plate = menusRestorant[i];
-        for (let key in plate) {
-          if (key == this.currentCuisine.menu[0]) {
-            this.currentMenu = plate[key]
-          }
-        }
-      }
-    }
-  },
-
-  useNuts() {
-    this.nuts = !this.nuts;
-    let filter = ref([]);
-    if (this.nuts === true) {
-      for (let key in this.currentMenu) {
-        let dish = this.currentMenu[key];
-        if (dish[3] == 'true') {
-          filter.value.push(dish)
-        }
-      }
-      this.currentMenu = filter;
-    } else {
-            const nameRestorant = this.currentCuisine.name;
-      const menusRestorant = this.allmenus[`${nameRestorant}1`];
-      for (let i=0; i <= menusRestorant.length; i++) {
-        let plate = menusRestorant[i];
-        for (let key in plate) {
-          if (key == this.currentCuisine.menu[0]) {
-            this.currentMenu = plate[key]
-          }
-        }
-      }
+      let index;
+      Object.keys(this.allmenus).map((i, idx) => {
+        i === this.currentCuisine.name ? index = idx : null
+      })
+      this.selectMenu(this.currentCuisine.name, index);
     }
   },
 
@@ -231,47 +193,21 @@ const nameRestorant = this.currentCuisine.name;
   },
 
   mounted() {
-    // axios.get('https://mocki.io/v1/57e39043-277e-4a48-95dd-5dc4e8597fd4')
-    axios.get('https://mocki.io/v1/1a7ad2ca-fb29-4fd8-b68a-7259a6ed5cfe')
+    // axios.get('https://mocki.io/v1/1a7ad2ca-fb29-4fd8-b68a-7259a6ed5cfe')
+    axios.get('https://mocki.io/v1/3d33c0dd-d8a9-43f1-9f11-07a82e23768b')
       .then(response => {
-        response.data[0].West.map(i => {
-          for (let key in i) {
-            this.currentCuisine.menu.push(key)
-          }
-          this.currentMenuName = this.currentCuisine.menu[0];
-          // const firstMenu = response.data[0].West[0];
-          // console.log('1', Object.values(response.data[0].West[0]));
-          const dishMenu = [];
-          // firstMenu[this.currentMenuName].map(i => {
-          //    a.push(Object.values(i));
-          // });
-          Object.values(response.data[0].West[0]).map(i => {
-            i.map(j => {
-              dishMenu.push(Object.values(j)[0])
-            })
-            
-          })
-          
-          this.currentMenu = dishMenu;
-        });
-        console.log(this.currentMenu);
-        // for (let key in firstMenu) {
-        //   console.log(key);
-        // }
-        //     for (let restorant in response.data[0]) {
-        //     this.allmenus = response.data[0]
-        //     if (restorant == this.currentCuisine.name) {
-        //         this.currentCuisine['menu'] = this.allmenus[restorant];
-        //     }
-        //     const menu = this.allmenus['West1'];
-        //     let plate = menu[0];
-        //     this.currentMenuName = this.currentCuisine.menu[0];
-        // for (let key in plate) {
-        //   if (key == this.currentCuisine.menu[0]) {
-        //     this.currentMenu = plate[key];
-        //   }
-        // }
-        // }
+        this.allmenus = response.data[0];
+        const firstRestourant = Object.keys(this.allmenus)[0];
+        this.currentCuisine['menu'] = Object.values(this.allmenus[firstRestourant]);
+        this.currentMenuName = Object.keys(this.currentCuisine.menu[0])[0];
+        this.selectMenu(firstRestourant, 0);
+        // const dishMenu = [];
+        //   Object.values(response.data[0].West[0]).map(i => {
+        //     i.map(j => {
+        //       dishMenu.push(Object.values(j)[0])
+        //     })
+        //   })
+        //   this.currentMenu = dishMenu;
       })
       .catch(error => {
         console.log(error);
